@@ -31,8 +31,16 @@ router.get('/logout', function(req, res) {
 //sending data to the database
 router.post('/', function (req, res){
   console.log('In post route');
-  var itemsDB = Item(req.body);
-  console.log('this is req.body:', req.body);
+  // var itemsDB = Item(req.body);
+
+  // id: req.user._id
+  var itemsDB = new Item({
+    userId: req.user._id,
+    description: req.body.description,
+    img: req.body.img
+  });
+
+  console.log('this is req.body:', req.user, req.body);
   itemsDB.save().then(function(){
     res.sendStatus(200);
   });
@@ -41,7 +49,7 @@ router.post('/', function (req, res){
 router.get('/getItems', function(req, res){
   console.log('zzzzzzzzzxxxxxxxxxxaaaaaaaaaa');
   // server side is grabing items from the database with the .find
-  Item.find({}, function(err, results) {
+  Item.find().populate('userId').exec({}, function(err, results) {
     if(err){
       console.log(err);
       res.sendStatus(500);

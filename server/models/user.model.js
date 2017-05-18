@@ -12,10 +12,12 @@ var UserSchema = new Schema({
 
 // items schema
 var ItemSchema = new Schema({
-  username: {type: String, required: true},
+  userId : [{ type: Schema.Types.ObjectId, ref: 'User' }],
   description: {type: String, required: true},
   img: {type: String, required: true}
 });
+
+
 
 // Called before adding a new user to the DB. Encrypts password.
 UserSchema.pre('save', function(next) {

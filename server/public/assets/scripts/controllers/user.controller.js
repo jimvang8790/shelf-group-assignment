@@ -54,6 +54,7 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
     method: 'GET',
     url: '/user/getItems',
   }).then(function(response){
+    console.log('this is:', response.data);
     vm.item= response.data;
   });
 };// end getItems

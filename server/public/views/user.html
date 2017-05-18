@@ -4,15 +4,15 @@
     <button class="btn btn-default" ng-click="uc.logout()">Log Out</button>
     <!-- NOTE adding new stuff here -->
     <div class="inputdiv">
-      <input ng-model="uc.usernameIn" type="text" placeholder="enter username">
+      <!-- <input ng-model="uc.usernameIn" type="text" placeholder="enter username"> -->
       <input ng-model="uc.descriptionIn" placeholder="description" width=80%>
       <input ng-model="uc.imgIn" type="text" placeholder="img url">
       <button ng-click="uc.addButton()" type="button" name="button">Add Button</button>
     </div>
-    <div ng-repeat="data in uc.item"  class = "col-sm-5">
+    <div ng-repeat="bob in uc.item"  class = "col-sm-5">
           <!-- need to append shelf items here -->
-          {{data.username}}
-          {{data.description}}
-          {{data.img}}
+          {{bob.userId[0].username}}
+          {{bob.description}}
+          {{bob.img}}
     </div>
 </div>
