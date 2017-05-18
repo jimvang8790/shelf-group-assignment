@@ -21,5 +21,9 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
       console.log('logged out');
       $location.path("/home");
     });
-  }
+  };
+
+  vm.addButton = function(){
+    console.log('add button click');
+  };
 }]);

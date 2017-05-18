@@ -2,4 +2,10 @@
     <h1 id="welcome" class="lead">Welcome, {{uc.userName}}!</h1>
     <p>This is the user page!</p>
     <button class="btn btn-default" ng-click="uc.logout()">Log Out</button>
+    <div class="inputdiv">
+      <input ng-model="uc.itemIn" type="text" placeholder="enter item">
+      <input ng-model="uc.descriptionIn" placeholder="description" width=80%>
+      <input ng-model="uc.imgIn" type="text" placeholder="img url">
+      <button ng-click="uc.addButton()" type="button" name="button">Add Button</button>
+    </div>
 </div>
