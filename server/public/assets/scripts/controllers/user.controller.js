@@ -23,7 +23,41 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
     });
   };
 
-  vm.addButton = function(){
+//   // add button
+  vm.addButton = function( ){
     console.log('add button click');
-  };
-}]);
+    var objectToSend = {
+      username: vm.usernameIn,
+      description: vm.descriptionIn,
+      img: vm.imgIn
+    };//end object to send
+    console.log(objectToSend);
+
+    console.log("items to send to db");
+    $http({
+      method: 'POST',
+      url: '/user',
+      data: objectToSend
+    }).then(function(response){
+      console.log("back from derver with" , response);
+      vm.getItems();
+    });
+    // getItems();
+    vm.usernameIn='';
+    vm.descriptionIn='';
+    vm.imgIn='';
+  }; // end addButton
+
+  vm.getItems = function(){
+    console.log('getting items');
+    $http({
+    method: 'GET',
+    url: '/user/getItems',
+  }).then(function(response){
+    vm.item= response.data;
+  });
+};// end getItems
+
+vm.getItems();
+
+}]);// end myApp controller

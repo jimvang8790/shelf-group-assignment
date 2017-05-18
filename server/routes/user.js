@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var path = require('path');
+var Item = require('../models/user.model').item;
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -27,5 +28,30 @@ router.get('/logout', function(req, res) {
   res.sendStatus(200);
 });
 
+//sending data to the database
+router.post('/', function (req, res){
+  console.log('In post route');
+  var itemsDB = Item(req.body);
+  console.log('this is req.body:', req.body);
+  itemsDB.save().then(function(){
+    res.sendStatus(200);
+  });
+});
+
+router.get('/getItems', function(req, res){
+  console.log('zzzzzzzzzxxxxxxxxxxaaaaaaaaaa');
+  // server side is grabing items from the database with the .find
+  Item.find({}, function(err, results) {
+    if(err){
+      console.log(err);
+      res.sendStatus(500);
+    }
+    else{
+      console.log('successful get items ->', results);
+      res.status(200).send(results);
+    }
+  });
+
+});
 
 module.exports = router;

@@ -1,6 +1,8 @@
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
-var User = require('../models/user.model');
+var User = require('../models/user.model').user;
+var Item = require('../models/user.model').item;
+
 
 // Store this user's unique id in the session for later reference
 // Only runs during authentication

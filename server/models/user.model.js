@@ -3,10 +3,18 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-// Mongoose Schema
+// Mongoose Schemas
+// user schema
 var UserSchema = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true}
+});// end user schema
+
+// items schema
+var ItemSchema = new Schema({
+  username: {type: String, required: true},
+  description: {type: String, required: true},
+  img: {type: String, required: true}
 });
 
 // Called before adding a new user to the DB. Encrypts password.
@@ -29,8 +37,8 @@ UserSchema.pre('save', function(next) {
 
             user.password = hash;
             next();
-        })
-    })
+        });
+    });
 });
 
 // Used by login methods to compare login form password to DB password
@@ -45,5 +53,5 @@ UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     });
 };
 
-
-module.exports = mongoose.model('User', UserSchema);
+module.exports.user = mongoose.model('User', UserSchema);
+module.exports.item = mongoose.model('Items', ItemSchema);
