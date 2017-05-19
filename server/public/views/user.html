@@ -9,10 +9,10 @@
       <input ng-model="uc.imgIn" type="text" placeholder="img url">
       <button ng-click="uc.addButton()" type="button" name="button">Add Button</button>
     </div>
-    <div ng-repeat="bob in uc.item"  class = "col-sm-5">
+    <div ng-repeat="bob in uc.item"  class = "col-sm-4">
           <!-- need to append shelf items here -->
-          {{bob.userId[0].username}}
-          {{bob.description}}
-          {{bob.img}}
+          <h2>{{bob.userId[0].username}}</h2>
+          <h3>{{bob.description}}</h3>
+          <img ng-src="{{bob.img}}" class="images">
     </div>
 </div>
