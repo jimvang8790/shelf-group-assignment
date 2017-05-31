@@ -23,7 +23,7 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
     });
   };
 
-//   // add button
+  // add button
   vm.addButton = function( ){
     console.log('add button click');
     var objectToSend = {
